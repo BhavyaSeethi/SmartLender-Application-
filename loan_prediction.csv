@@ -1,29 +1,22 @@
-# Step 1: Import and Read Dataset
-
-# Import libraries
 import pandas as pd
-import numpy as np
-import matplotlib.pyplot as plt
-import seaborn as sns
-from sklearn.model_selection import train_test_split
-from sklearn.preprocessing import StandardScaler
-from sklearn.metrics import accuracy_score, classification_report, confusion_matrix, f1_score
-
-# Read dataset (make sure loan_prediction.csv is in the same folder)
-data = pd.read_csv('loan_prediction.csv')
-
-# Show first 5 rows
-print("First 5 rows of dataset:")
-print(data.head())
-
-# Dataset info
-print("\nDataset Info:")
-print(data.info())
-
-# Summary statistics
-print("\nSummary Statistics:")
-print(data.describe())
-
-# Shape of dataset
-print("\nDataset Shape (rows, columns):")
-print(data.shape)
+# Create sample loan prediction dataset
+data = {
+    "Loan_ID": ["LP001002","LP001003","LP001005","LP001006","LP001008","LP001011","LP001013","LP001014","LP001018","LP001020"],
+    "Gender": ["Male","Male","Male","Male","Male","Male","Female","Male","Female","Male"],
+    "Married": ["No","Yes","Yes","Yes","No","Yes","Yes","Yes","No","Yes"],
+    "Dependents": ["0","1","0","0","0","2","0","3+","0","1"],
+    "Education": ["Graduate","Graduate","Graduate","Not Graduate","Graduate","Graduate","Graduate","Graduate","Not Graduate","Graduate"],
+    "Self_Employed": ["No","No","Yes","No","No","Yes","No","No","No","No"],
+    "ApplicantIncome": [5849,4583,3000,2583,6000,2500,3000,4000,1500,5000],
+    "CoapplicantIncome": [0,1508,0,2358,0,0,1500,2500,0,1800],
+    "LoanAmount": [146,128,66,120,141,122,100,200,80,150],
+    "Loan_Amount_Term": [360,360,360,360,360,360,360,360,360,360],
+    "Credit_History": [1,1,1,1,1,1,1,0,1,1],
+    "Property_Area": ["Urban","Rural","Urban","Urban","Urban","Semiurban","Urban","Rural","Semiurban","Urban"],
+    "Loan_Status": ["Y","N","Y","Y","Y","N","Y","N","Y","Y"]
+}
+# Convert to DataFrame
+df = pd.DataFrame(data)
+# Save as CSV
+df.to_csv("loan_prediction.csv", index=False)
+print("loan_prediction.csv file has been created successfully!")
