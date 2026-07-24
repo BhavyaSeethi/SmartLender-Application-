@@ -1,1 +1,7 @@
+import pandas as pd
 
+# Read the CSV file
+data = pd.read_csv("loan_prediction.csv")
+
+# Save as Excel (.xlsx)
+data.to_excel("loan_prediction.xlsx", index=False)
