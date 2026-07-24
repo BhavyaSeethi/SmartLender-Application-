@@ -1,29 +1,35 @@
 from flask import Flask, render_template, request
+import numpy as np
+import pickle
 
 app = Flask(__name__)
 
-@app.route('/')
+# Load model and scaler (replace with your own trained files)
+model = pickle.load(open("model.pkl", "rb"))
+scaler = pickle.load(open("scale.pkl", "rb"))
+
+@app.route("/")
 def home():
-    return render_template('home.html')
+    return render_template("home.html")
 
-@app.route('/predict')
+@app.route("/predict")
 def predict():
-    return render_template('predict.html')
+    return render_template("predict.html")
 
-@app.route('/result', methods=['POST'])
-def result():
-    # Collect form data
-    name = request.form['name']
-    age = request.form['age']
-    income = request.form['income']
+@app.route("/submit", methods=["POST"])
+def submit():
+    # Retrieve form data
+    features = [float(x) for x in request.form.values()]
+    final_features = np.array([features])
+    scaled_features = scaler.transform(final_features)
+    prediction = model.predict(scaled_features)[0]
 
-    # Dummy prediction logic (replace with ML model later)
-    if int(income) > 50000:
-        prediction = "Loan Approved ✅"
+    if prediction == 0:
+        result = "Loan will NOT be Approved"
     else:
-        prediction = "Loan Not Approved ❌"
+        result = "Loan will be Approved"
 
-    return render_template('output.html', name=name, age=age, income=income, prediction=prediction)
+    return render_template("submit.html", result=result)
 
-if __name__ == '__main__':
-     app.run(host="0.0.0.0", port=8000, debug=True)
+if __name__ == "__main__":
+    app.run(debug=True)
