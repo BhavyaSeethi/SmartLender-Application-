@@ -1,43 +1,48 @@
 <!DOCTYPE html>
 <html>
-<head><title>Loan Approval Prediction</title></head>
-<body style="font-family: Arial; margin: 40px;">
+<head>
+    <title>Loan Approval Prediction</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
     <h3>Enter your Details for Loan Approval Prediction</h3>
-    <form action="/submit" method="post">
-        <!-- Gender -->
-        <label>Gender</label>
-        <select name="Gender"><option value="0">Male</option><option value="1">Female</option></select><br><br>
-        <!-- Married -->
-        <label>Married</label>
-        <select name="Married"><option value="1">Yes</option><option value="0">No</option></select><br><br>
-        <!-- Dependents -->
-        <label>Dependents</label>
-        <input type="number" name="Dependents"><br><br>
-        <!-- Education -->
-        <label>Education</label>
-        <select name="Education"><option value="0">Graduate</option><option value="1">Not Graduate</option></select><br><br>
-        <!-- Self Employed -->
-        <label>Self Employed</label>
-        <select name="Self_Employed"><option value="1">Yes</option><option value="0">No</option></select><br><br>
-        <!-- Applicant Income -->
-        <label>Applicant Income</label>
-        <input type="number" name="ApplicantIncome"><br><br>
-        <!-- Coapplicant Income -->
-        <label>Coapplicant Income</label>
-        <input type="number" name="CoapplicantIncome"><br><br>
-        <!-- Loan Amount -->
-        <label>Loan Amount</label>
-        <input type="number" name="LoanAmount"><br><br>
-        <!-- Loan Amount Term -->
-        <label>Loan Amount Term</label>
-        <input type="number" name="Loan_Amount_Term"><br><br>
-        <!-- Credit History -->
-        <label>Credit History</label>
-        <select name="Credit_History"><option value="1">Good</option><option value="0">Bad</option></select><br><br>
-        <!-- Property Area -->
-        <label>Property Area</label>
-        <select name="Property_Area"><option value="0">Urban</option><option value="1">Semiurban</option><option value="2">Rural</option></select><br><br>
-        <input type="submit" value="Submit">
-    </form>
+    <div class="container">
+        <form action="/submit" method="post">
+            <label>Gender</label>
+            <select name="Gender"><option value="0">Male</option><option value="1">Female</option></select>
+
+            <label>Married</label>
+            <select name="Married"><option value="1">Yes</option><option value="0">No</option></select>
+
+            <label>Dependents</label>
+            <input type="number" name="Dependents">
+
+            <label>Education</label>
+            <select name="Education"><option value="0">Graduate</option><option value="1">Not Graduate</option></select>
+
+            <label>Self Employed</label>
+            <select name="Self_Employed"><option value="1">Yes</option><option value="0">No</option></select>
+
+            <label>Applicant Income</label>
+            <input type="number" name="ApplicantIncome">
+
+            <label>Coapplicant Income</label>
+            <input type="number" name="CoapplicantIncome">
+
+            <label>Loan Amount</label>
+            <input type="number" name="LoanAmount">
+
+            <label>Loan Amount Term</label>
+            <input type="number" name="Loan_Amount_Term">
+
+            <label>Credit History</label>
+            <select name="Credit_History"><option value="1">Good</option><option value="0">Bad</option></select>
+
+            <label>Property Area</label>
+            <select name="Property_Area"><option value="0">Urban</option><option value="1">Semiurban</option><option value="2">Rural</option></select>
+
+            <input type="submit" value="Submit">
+        </form>
+    </div>
 </body>
 </html>
