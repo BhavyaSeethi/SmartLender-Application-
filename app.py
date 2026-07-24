@@ -1,38 +1,41 @@
-from flask import Flask, render_template, request
 import numpy as np
 import pickle
+import pandas
 import os
+from flask import Flask, request, render_template
 
 app = Flask(__name__)
 
 # Load model and scaler
-model = pickle.load(open("model.pkl", "rb"))
-scaler = pickle.load(open("scale.pkl", "rb"))
+model = pickle.load(open('rdf.pkl', 'rb'))
+scale = pickle.load(open('scale1.pkl', 'rb'))
 
-@app.route("/")
+@app.route('/')
 def home():
-    return render_template("home.html")
+    return render_template('input.html')
 
-@app.route("/predict")
-def predict():
-    return render_template("predict.html")
-
-@app.route("/submit", methods=["POST"])
+@app.route('/submit', methods=['POST'])
 def submit():
-    # Collect form values
-    features = [float(x) for x in request.form.values()]
-    final_features = np.array([features])
-    scaled_features = scaler.transform(final_features)
-    prediction = model.predict(scaled_features)[0]
+    # Read inputs from form
+    input_feature = [float(x) for x in request.form.values()]
+    input_feature = np.array([input_feature])
+    names = ['Gender', 'Married', 'Dependents', 'Education', 'Self Employed',
+             'ApplicantIncome', 'CoapplicantIncome', 'LoanAmount',
+             'Loan_Amount_Term', 'Credit_History', 'Property_Area']
+    data = pandas.DataFrame(input_feature, columns=names)
 
-    # Result message
-    if prediction == 1:
-        result = "Loan will be Approved ✅"
-    else:
+    # Predict using model
+    prediction = model.predict(data)
+    prediction = int(prediction)
+
+    # Show result
+    if prediction == 0:
         result = "Loan will NOT be Approved ❌"
+    else:
+        result = "Loan will be Approved ✅"
 
-    return render_template("submit.html", result=result)
+    return render_template('submit.html', result=result)
 
-if __name__ == "__main__":
-    # Render requires host=0.0.0.0 and dynamic port
-    app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)), debug=True)
+if __name__ == '__main__':
+    port = int(os.environ.get('PORT', 5000))
+    app.run(debug=False)
