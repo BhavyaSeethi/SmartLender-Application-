@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request
 import numpy as np
 import pickle
+import os
 
 app = Flask(__name__)
 
@@ -18,11 +19,13 @@ def predict():
 
 @app.route("/submit", methods=["POST"])
 def submit():
+    # Collect form values
     features = [float(x) for x in request.form.values()]
     final_features = np.array([features])
     scaled_features = scaler.transform(final_features)
     prediction = model.predict(scaled_features)[0]
 
+    # Result message
     if prediction == 1:
         result = "Loan will be Approved ✅"
     else:
@@ -31,4 +34,5 @@ def submit():
     return render_template("submit.html", result=result)
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=8080, debug=True)
+    # Render requires host=0.0.0.0 and dynamic port
+    app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)), debug=True)
