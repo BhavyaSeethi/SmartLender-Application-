@@ -2,22 +2,340 @@
 <html>
 <head>
     <title>Loan Approval Prediction</title>
+
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
             font-family: Arial, sans-serif;
             text-align: center;
-            background: linear-gradient(to bottom, #ff6600, #ff9900);
-            color: black;
-            padding-top: 100px;
+
+            /* Dark orange to light orange */
+            background: linear-gradient(
+                to bottom,
+                #e85d04 0%,
+                #f77f00 40%,
+                #ff9f1c 70%,
+                #ffb733 100%
+            );
+
+            min-height: 100vh;
+            overflow: hidden;
         }
-        h1 { font-size: 36px; font-weight: bold; }
-        h2 { font-size: 28px; margin-top: 20px; color: #000; }
-        img { margin-top: 30px; width: 400px; border-radius: 10px; }
+
+        /* Heading */
+        h1 {
+            color: black;
+            font-size: 34px;
+            font-weight: bold;
+            white-space: nowrap;
+
+            margin-top: 25px;
+            margin-bottom: 30px;
+        }
+
+        /* Prediction Result */
+        .result {
+            color: black;
+            font-size: 22px;
+            font-weight: bold;
+
+            margin-bottom: 15px;
+        }
+
+        /* Six Coin Columns */
+        .money-container {
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+
+            /* ZERO HORIZONTAL GAP */
+            gap: 0;
+
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Each Column */
+        .stack {
+            width: 50px;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-end;
+
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Columns Touch Each Other */
+        .stack + .stack {
+            margin-left: 0;
+        }
+
+        /* Black Icons */
+        .icon {
+            font-size: 16px;
+            line-height: 15px;
+
+            color: black;
+
+            /* Make all emoji icons black */
+            filter: grayscale(100%) brightness(0);
+
+            /* No gap between icon and coins */
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Coin Bundle */
+        .coin-bundle {
+            width: 50px;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            /* ZERO GAP BETWEEN COINS */
+            gap: 0;
+
+            margin: 0;
+            padding: 0;
+
+            /* Slightly soften the coin layers */
+            filter: blur(0.3px);
+        }
+
+        /* Individual Coin */
+        .coin {
+            width: 50px;
+            height: 4px;
+
+            /* No gap between coins */
+            margin: -1px 0 0 0;
+            padding: 0;
+
+            display: block;
+
+            /* Slightly visible golden coin layers */
+            background: linear-gradient(
+                to bottom,
+                #f0cf65 0%,
+                #d9a52e 45%,
+                #b77b18 100%
+            );
+
+            /* Soft border */
+            border: 1px solid rgba(120, 75, 10, 0.5);
+
+            /* Slight separation so coins are visible */
+            box-shadow:
+                0 1px 1px rgba(90, 55, 5, 0.5),
+                inset 0 1px 1px rgba(255, 240, 160, 0.4);
+
+            border-radius: 50%;
+        }
+
+        /* 1st Column - 5 Coins */
+        .small-bundle .coin {
+            width: 50px;
+            height: 4px;
+            margin: -1px 0 0 0;
+        }
+
+        /* 2nd, 3rd and 5th Columns */
+        .medium-bundle .coin {
+            width: 50px;
+            height: 4px;
+            margin: -1px 0 0 0;
+        }
+
+        /* 4th Column - 15 Coins */
+        .large-bundle .coin {
+            width: 50px;
+            height: 4px;
+            margin: -1px 0 0 0;
+        }
+
+        /* Bottom Shadow */
+        .shadow {
+            width: 230px;
+            height: 15px;
+
+            background: rgba(0, 0, 0, 0.3);
+
+            border-radius: 50%;
+
+            margin: 35px auto 0;
+
+            filter: blur(7px);
+        }
+
     </style>
 </head>
+
 <body>
-    <h1>Laon Approval Prediction</h1>
-    <h2>{{ result }}</h2>
-    <img src="{{ url_for('static', filename='images/loan_prediction.png') }}" alt="Loan Approval Prediction">
+
+    <!-- Heading -->
+    <h1>Loan Approval Prediction</h1>
+
+    <!-- Prediction Result -->
+    <div class="result">
+        {{ result }}
+    </div>
+
+
+    <!-- SIX MERGED COIN COLUMNS -->
+    <div class="money-container">
+
+
+        <!-- 1st Column - 5 Coins -->
+        <div class="stack">
+
+            <!-- Black Icon -->
+            <div class="icon">♟</div>
+
+            <div class="coin-bundle small-bundle">
+
+                <div class="coin"></div>
+                <div class="coin"></div>
+                <div class="coin"></div>
+                <div class="coin"></div>
+                <div class="coin"></div>
+
+            </div>
+
+        </div>
+
+
+        <!-- 2nd Column - 8 Coins -->
+        <div class="stack">
+
+            <!-- Black Icon -->
+            <div class="icon">✚</div>
+
+            <div class="coin-bundle medium-bundle">
+
+                <div class="coin"></div>
+                <div class="coin"></div>
+                <div class="coin"></div>
+                <div class="coin"></div>
+                <div class="coin"></div>
+                <div class="coin"></div>
+                <div class="coin"></div>
+                <div class="coin"></div>
+
+            </div>
+
+        </div>
+
+
+        <!-- 3rd Column - 10 Coins -->
+        <div class="stack">
+
+            <!-- Black Icon -->
+            <div class="icon">🎓</div>
+
+            <div class="coin-bundle medium-bundle">
+
+                <div class="coin"></div>
+                <div class="coin"></div>
+                <div class="coin"></div>
+                <div class="coin"></div>
+                <div class="coin"></div>
+                <div class="coin"></div>
+                <div class="coin"></div>
+                <div class="coin"></div>
+                <div class="coin"></div>
+                <div class="coin"></div>
+
+            </div>
+
+        </div>
+
+
+        <!-- 4th Column - 15 Coins -->
+        <div class="stack">
+
+            <!-- Black House Icon -->
+            <div class="icon">⌂</div>
+
+            <div class="coin-bundle large-bundle">
+
+                <div class="coin"></div>
+                <div class="coin"></div>
+                <div class="coin"></div>
+                <div class="coin"></div>
+                <div class="coin"></div>
+                <div class="coin"></div>
+                <div class="coin"></div>
+                <div class="coin"></div>
+                <div class="coin"></div>
+                <div class="coin"></div>
+                <div class="coin"></div>
+                <div class="coin"></div>
+                <div class="coin"></div>
+                <div class="coin"></div>
+                <div class="coin"></div>
+
+            </div>
+
+        </div>
+
+
+        <!-- 5th Column - 10 Coins -->
+        <div class="stack">
+
+            <!-- Black Car Icon -->
+            <div class="icon">🚗</div>
+
+            <div class="coin-bundle medium-bundle">
+
+                <div class="coin"></div>
+                <div class="coin"></div>
+                <div class="coin"></div>
+                <div class="coin"></div>
+                <div class="coin"></div>
+                <div class="coin"></div>
+                <div class="coin"></div>
+                <div class="coin"></div>
+                <div class="coin"></div>
+                <div class="coin"></div>
+
+            </div>
+
+        </div>
+
+
+        <!-- 6th Column - 5 Coins -->
+        <div class="stack">
+
+            <!-- Black Food Icon -->
+            <div class="icon">🍴</div>
+
+            <div class="coin-bundle small-bundle">
+
+                <div class="coin"></div>
+                <div class="coin"></div>
+                <div class="coin"></div>
+                <div class="coin"></div>
+                <div class="coin"></div>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+    <!-- Bottom Shadow -->
+    <div class="shadow"></div>
+
 </body>
-</html>
+    </html>
