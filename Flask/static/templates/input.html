@@ -2,90 +2,156 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Loan Approval Prediction</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        * { box-sizing: border-box; }
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: white;
+            font-family: "Times New Roman", serif;
+        }
+        .header {
+            width: 100%;
+            background-color: #7d9134;
+            color: black;
+            font-size: 18px;
+            font-weight: bold;
+            padding: 8px 15px;
+        }
+        .form-container {
+            width: 100%;
+            background-color: #f5f5f5;
+            padding: 10px 15px;
+        }
+        .field { width: 100%; margin-bottom: 10px; }
+        .field label {
+            display: block;
+            width: 100%;
+            background-color: #eeeeee;
+            color: #555555;
+            font-size: 15px;
+            font-weight: bold;
+            padding: 7px;
+            border: 1px solid #dddddd;
+        }
+        .field input, .field select {
+            display: block;
+            width: 100%;
+            height: 38px;
+            background-color: white;
+            border: 1px solid #dddddd;
+            padding: 8px;
+            font-family: "Times New Roman", serif;
+            font-size: 14px;
+        }
+        .submit-area {
+            width: 100%;
+            background-color: #eeeeee;
+            border: 1px solid #dddddd;
+            padding: 12px;
+        }
+        .submit-button {
+            background-color: #16b879;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .submit-button:hover { background-color: #0da369; }
+        .footer {
+            width: 100%;
+            height: 45px;
+            background-color: #7d9134;
+        }
+    </style>
 </head>
 <body>
     <div class="header">Enter your Details for Loan Approval Prediction</div>
 
-    <form action="/submit" method="post" class="form-container">
+    <!-- Form -->
+    <div class="form-container">
+        <form action="/submit" method="POST">
+            <div class="field">
+                <label>Gender</label>
+                <select name="Gender">
+                    <option>Male</option>
+                    <option>Female</option>
+                </select>
+            </div>
 
-        <div class="field">
-            <label>Gender</label>
-            <select name="Gender">
-                <option>Male</option>
-                <option>Female</option>
-            </select>
-        </div>
+            <div class="field">
+                <label>Marital</label>
+                <select name="Married">
+                    <option>Yes</option>
+                    <option>No</option>
+                </select>
+            </div>
 
-        <div class="field">
-            <label>Married</label>
-            <select name="Married">
-                <option>Yes</option>
-                <option>No</option>
-            </select>
-        </div>
+            <div class="field">
+                <label>Dependents</label>
+                <input type="number" name="Dependents" placeholder="No. of Dependents eg. 0, 1, 2...">
+            </div>
 
-        <div class="field">
-            <label>Dependents</label>
-            <input type="number" name="Dependents" placeholder="0, 1, 2...">
-        </div>
+            <div class="field">
+                <label>Education</label>
+                <select name="Education">
+                    <option>Graduate</option>
+                    <option>Not Graduate</option>
+                </select>
+            </div>
 
-        <div class="field">
-            <label>Education</label>
-            <select name="Education">
-                <option>Graduate</option>
-                <option>Not Graduate</option>
-            </select>
-        </div>
+            <div class="field">
+                <label>Self Employed</label>
+                <select name="Self_Employed">
+                    <option>Yes</option>
+                    <option>No</option>
+                </select>
+            </div>
 
-        <div class="field">
-            <label>Self Employed</label>
-            <select name="Self_Employed">
-                <option>Yes</option>
-                <option>No</option>
-            </select>
-        </div>
+            <div class="field">
+                <label>Applicant Income</label>
+                <input type="number" name="ApplicantIncome" placeholder="Your Income...">
+            </div>
 
-        <div class="field">
-            <label>Applicant Income</label>
-            <input type="number" name="ApplicantIncome" placeholder="Your Income...">
-        </div>
+            <div class="field">
+                <label>Co-Applicant Income</label>
+                <input type="number" name="CoapplicantIncome" placeholder="Your Co-Applicant Income...">
+            </div>
 
-        <div class="field">
-            <label>Co-Applicant Income</label>
-            <input type="number" name="CoapplicantIncome" placeholder="Co-Applicant Income...">
-        </div>
+            <div class="field">
+                <label>Loan Amount</label>
+                <input type="number" name="LoanAmount" placeholder="Enter the Loan Amount...">
+            </div>
 
-        <div class="field">
-            <label>Loan Amount</label>
-            <input type="number" name="LoanAmount" placeholder="Loan Amount...">
-        </div>
+            <div class="field">
+                <label>Loan Amount Term</label>
+                <input type="number" name="Loan_Amount_Term" placeholder="Enter the Term Loan-Amount in days...">
+            </div>
 
-        <div class="field">
-            <label>Loan Amount Term</label>
-            <input type="number" name="Loan_Amount_Term" placeholder="Term in days...">
-        </div>
+            <div class="field">
+                <label>Credit History</label>
+                <input type="text" name="Credit_History" placeholder="Enter your Previous Credit History...">
+            </div>
 
-        <div class="field">
-            <label>Credit History</label>
-            <input type="text" name="Credit_History" placeholder="1 or 0">
-        </div>
+            <div class="field">
+                <label>Property Area</label>
+                <select name="Property_Area">
+                    <option>Urban</option>
+                    <option>Semiurban</option>
+                    <option>Rural</option>
+                </select>
+            </div>
 
-        <div class="field">
-            <label>Property Area</label>
-            <select name="Property_Area">
-                <option>Urban</option>
-                <option>Semiurban</option>
-                <option>Rural</option>
-            </select>
-        </div>
-
-        <div class="submit-area">
-            <button type="submit" class="submit-button">Submit</button>
-        </div>
-    </form>
+            <div class="submit-area">
+                <button type="submit" class="submit-button">Submit</button>
+            </div>
+        </form>
+    </div>
 
     <div class="footer"></div>
 </body>
-                </html>
+                    </html>
