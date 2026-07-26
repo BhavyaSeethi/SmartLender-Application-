@@ -1,13 +1,43 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Loan Prediction Project</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Loan Predictor</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background: linear-gradient(to bottom, #7d9134, #a4c639);
+            min-height: 100vh;
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            color: black;
+            margin-top: 60px;
+            font-size: 32px;
+        }
+        .btn {
+            margin-top: 40px;
+            padding: 12px 25px;
+            font-size: 16px;
+            font-weight: bold;
+            background-color: #16b879;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+        .btn:hover {
+            background-color: #0da369;
+        }
+    </style>
 </head>
-<body style="font-family: Arial; text-align: center; margin-top: 100px;">
-    <h1>Loan Prediction Internship Project</h1>
-    <p>This application predicts whether a loan will be approved based on applicant details.</p>
+<body>
+    <h1>Welcome to Loan Approval Prediction</h1>
     <form action="/input" method="get">
-        <input type="submit" value="Go to Prediction Form">
+        <button type="submit" class="btn">Go to Prediction Form</button>
     </form>
 </body>
 </html>
