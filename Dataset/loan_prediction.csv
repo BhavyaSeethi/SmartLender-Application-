@@ -1,1 +1,22 @@
-
+import pandas as pd
+# Create sample loan prediction dataset
+data = {
+    "Loan_ID": ["LP001002","LP001003","LP001005","LP001006","LP001008","LP001011","LP001013","LP001014","LP001018","LP001020"],
+    "Gender": ["Male","Male","Male","Male","Male","Male","Female","Male","Female","Male"],
+    "Married": ["No","Yes","Yes","Yes","No","Yes","Yes","Yes","No","Yes"],
+    "Dependents": ["0","1","0","0","0","2","0","3+","0","1"],
+    "Education": ["Graduate","Graduate","Graduate","Not Graduate","Graduate","Graduate","Graduate","Graduate","Not Graduate","Graduate"],
+    "Self_Employed": ["No","No","Yes","No","No","Yes","No","No","No","No"],
+    "ApplicantIncome": [5849,4583,3000,2583,6000,2500,3000,4000,1500,5000],
+    "CoapplicantIncome": [0,1508,0,2358,0,0,1500,2500,0,1800],
+    "LoanAmount": [146,128,66,120,141,122,100,200,80,150],
+    "Loan_Amount_Term": [360,360,360,360,360,360,360,360,360,360],
+    "Credit_History": [1,1,1,1,1,1,1,0,1,1],
+    "Property_Area": ["Urban","Rural","Urban","Urban","Urban","Semiurban","Urban","Rural","Semiurban","Urban"],
+    "Loan_Status": ["Y","N","Y","Y","Y","N","Y","N","Y","Y"]
+}
+# Convert to DataFrame
+df = pd.DataFrame(data)
+# Save as CSV
+df.to_csv("loan_prediction.csv", index=False)
+print("loan_prediction.csv file has been created successfully!")
