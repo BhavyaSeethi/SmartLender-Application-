@@ -1,43 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Smart Loan Predictor</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            background: linear-gradient(to bottom, #7d9134, #a4c639);
-            min-height: 100vh;
-            margin: 0;
-            padding: 0;
-        }
-        h1 {
-            color: black;
-            margin-top: 60px;
-            font-size: 32px;
-        }
-        .btn {
-            margin-top: 40px;
-            padding: 12px 25px;
-            font-size: 16px;
-            font-weight: bold;
-            background-color: #16b879;
-            color: white;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-        }
-        .btn:hover {
-            background-color: #0da369;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smart Loan Approval Prediction</title>
+  <style>
+    body {
+      background-color: white; /* White background */
+      color: black;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+    }
+
+    h1 {
+      margin-top: 100px;
+      font-size: 28px;
+      font-weight: bold;
+    }
+
+    .btn {
+      display: inline-block;
+      margin-top: 30px;
+      padding: 12px 25px;
+      background-color: #00b894; /* Green button */
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+      border: none;
+      border-radius: 6px;
+      text-decoration: none;
+      cursor: pointer;
+      transition: background;
+    }
+
+    .btn:hover {
+      background-color: #019874;
+    }
+
+    footer {
+      position: fixed;
+      bottom: 10px;
+      right: 10px;
+      font-size: 12px;
+      color: gray;
+    }
+  </style>
 </head>
 <body>
-    <h1>Welcome to Loan Approval Prediction</h1>
-    <form action="/input" method="get">
-        <button type="submit" class="btn">Go to Prediction Form</button>
-    </form>
+  <h1>Welcome to Loan Approval Prediction</h1>
+  <a href="/input" class="btn">Go to Prediction Form</a>
+
+  <footer>Made with Replit</footer>
 </body>
 </html>
